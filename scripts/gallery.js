@@ -10,9 +10,11 @@ var Arrow = React.createClass({
     },
     render: function(){
         var filename = 'img/' + this.props.direction + '.png';
+        var styles = this.props.isHidden ? {visibility:"hidden"} : null;
         return( <img
                  src = {filename}
                  onClick={this.handleClick}
+                 style={styles}
                 />
         );
     },
@@ -32,15 +34,11 @@ var Gallery = React.createClass({
         });
     },
     moveOn: function(dir){
-        console.log('diriction='+dir);
-        console.log('this.state.active='+this.state.active);
         if( dir == "right" ){
-            this.setState( {active: this.state.active++} );
+            this.setState( {active: this.state.active + 1 } );
         } else {
-            this.setState( {active: this.state.active--} );
+            this.setState( {active: this.state.active - 1 } );
         }
-        console.log('this.state.active='+this.state.active);
-        console.log('image='+this.state.images[this.state.active]);
     },
     componentWillMount: function() {
         this.loadImageList();
@@ -48,16 +46,19 @@ var Gallery = React.createClass({
     getInitialState: function() {
         return {images: [], active: 0 };
     },
+    //
     render: function () {
         return( <div>
-                <Arrow
-                    direction="left"
-                    onUserClick={this.moveOn}
-                />
+                 <Arrow
+                     direction="left"
+                     onUserClick={this.moveOn}
+                     isHidden = {!this.state.images[this.state.active-1]}
+                 />
                 <Image path={this.state.images[this.state.active]}/>
                 <Arrow
                     direction="right"
                     onUserClick={this.moveOn}
+                    isHidden = {!this.state.images[this.state.active+1]}
                 />
                 </div>);
     }

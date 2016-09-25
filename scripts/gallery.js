@@ -15,7 +15,7 @@ var Arrow = React.createClass({
         return( <img
                  src = {filename}
                  onClick={this.handleClick}
-                 //style={styles}
+                 style={styles}
                 />
         );
     },
@@ -67,6 +67,6 @@ var Gallery = React.createClass({
     }
 });
 ReactDOM.render(
-    <Gallery url="/api/photo.php" />,
+    <Gallery url="api/photo.php" />,
     document.getElementById('content')
 );

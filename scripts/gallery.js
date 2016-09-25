@@ -11,6 +11,7 @@ var Arrow = React.createClass({
     render: function(){
         var filename = 'img/' + this.props.direction + '.png';
         //var styles = this.props.isHidden ? {visibility:"hidden"} : null;
+        var styles = {cursor: "pointer", marginBottom: "200px"};
         return( <img
                  src = {filename}
                  onClick={this.handleClick}
